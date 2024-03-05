@@ -17,6 +17,7 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { resources } from "./config/resources";
+// import  Predict  from "./pages/placed/predict.jsx";
 
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
               }>
                    
               <Route index element={<Home />} />
+              {/* <Route path="/companies" element={<CompanyListPage/>} /> */}
+              {/* <Route path="/predict" element={<Predict/>} /> */}
 
               </Route>
                 </Routes>

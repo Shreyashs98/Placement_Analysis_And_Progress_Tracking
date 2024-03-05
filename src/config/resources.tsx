@@ -1,4 +1,4 @@
-import { DashboardOutlined, ProjectOutlined, ShopOutlined } from "@ant-design/icons";
+import { DashboardOutlined, PieChartOutlined, ProjectOutlined, ShopOutlined } from "@ant-design/icons";
 import { IResourceItem } from "@refinedev/core";
 
 export const resources: IResourceItem[] = [
@@ -29,6 +29,16 @@ export const resources: IResourceItem[] = [
     meta:{
         label:'Tasks',
         icon:<ProjectOutlined/>
+    }
+  },
+  {
+    name:"predict",
+    list:'/predict',
+    create:'/predict/new',
+    edit:'/predict/edit/:id',
+    meta:{
+        label:'Prediction',
+        icon:<PieChartOutlined />
     }
   }
 ];
