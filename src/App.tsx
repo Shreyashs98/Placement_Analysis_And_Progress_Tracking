@@ -1,4 +1,4 @@
-import { Authenticated, Refine, WelcomePage } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -19,8 +19,7 @@ import { Layout } from "./components/layout";
 import { resources } from "./config/resources";
 import Create from "./pages/company/create";
 import Edit from "./pages/company/edit";
-import PlacementForm from "./pages/placed/PlacementForm";
-// import  Predict  from "./pages/placed/predict.jsx";
+import Predict from "./pages/placed/PlacementForm";
 
 function App() {
   return (
@@ -66,7 +65,7 @@ function App() {
                 <Route path="new" element={<Create />} />
                 <Route path="edit/:id" element={<Edit />} />
               </Route>
-              <Route path="/predict" element={<PlacementForm/>} />
+              <Route path="/predict" element={<Predict/>} />
 
               </Route>
                 </Routes>

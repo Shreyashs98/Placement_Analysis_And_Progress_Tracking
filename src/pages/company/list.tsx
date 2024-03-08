@@ -6,10 +6,17 @@ import { Company } from '@/graphql/schema.types';
 import { SearchOutlined } from '@ant-design/icons';
 import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, ShowButton, useTable } from '@refinedev/antd'
 import { getDefaultFilter, useGo } from '@refinedev/core'
-import {  Input, Space, Table } from 'antd';
+import {  Button, Input, Space, Table } from 'antd';
 
 export const CompanyList = ({children}:React.PropsWithChildren) => {
   const go = useGo();
+  const handleButtonClick = () => {
+    // Construct the Google Drive file URL with the provided value
+    const googleDriveURL = `https://drive.google.com/file/d/1ieKt1Q67IoZgC_9wLI3R38YnSK_MuXAE/view?usp=drive_link`;
+
+    // Redirect the user to the Google Drive file
+    window.location.href = googleDriveURL;
+  };
   const { tableProps, filters } = useTable({
     resource: 'companies',
     onSearch:(values: { name: string }) => {
@@ -105,7 +112,10 @@ export const CompanyList = ({children}:React.PropsWithChildren) => {
         title="Materials"
         render={(value)=>(
           <Space>
-          <ShowButton hideText size='small' recordItemId={value} />
+            <Button onClick={handleButtonClick}>
+            <ShowButton hideText size='small' recordItemId={value} />
+            </Button>
+          
           </Space>
         )}
         />
