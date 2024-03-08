@@ -20,6 +20,7 @@ import { resources } from "./config/resources";
 import Create from "./pages/company/create";
 import Edit from "./pages/company/edit";
 import Predict from "./pages/placed/PlacementForm";
+import List from "./pages/tasks/list";
 
 function App() {
   return (
@@ -66,7 +67,7 @@ function App() {
                 <Route path="edit/:id" element={<Edit />} />
               </Route>
               <Route path="/tasks">
-                {/* <Route index element={<TaskList />} /> */}
+                <Route index element={<List />} />
               </Route>
               <Route path="/predict" element={<Predict/>} />
 

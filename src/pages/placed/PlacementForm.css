@@ -67,8 +67,9 @@ button:hover {
 .result-text {
   font-weight: bold;
   color: #27ae60;
+  font-size: large;
 }
-
+  
 .percentage-bar {
   height: 5px;
   width: 100%;
