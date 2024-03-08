@@ -48,12 +48,25 @@ def predict_placement():
         # Handle the case where the scaler is not fitted or the model is not fitted
         return jsonify({"error": placement_chance_percentage}), 500
 
-    if placement_chance_percentage == 0:
-        result = "Candidate cannot be placed based on qualification criteria."
-    else:
-        result = f"Predicted Placement Chance: {placement_chance_percentage:.2f}%"
+    eligibility_conditions = {
+        'aptitude_marks': input_features[0] >= 35,
+        'tenth_marks': input_features[1] >= 35,
+        'twelfth_marks': input_features[2] >= 35,
+        'degree_marks': input_features[3] >= 50,
+        'backlogs': input_features[6] <= 3,
+    }
 
-    return jsonify({"result": result})
+    is_eligible = all(eligibility_conditions.values())
+
+    if is_eligible:
+        if placement_chance_percentage == 0:
+            result = "Candidate cannot be placed based on qualification criteria."
+        else:
+            result = f"Predicted Placement Chance: {placement_chance_percentage:.2f}%"
+    else:
+        result = "Candidate is not eligible based on qualification criteria."
+
+    return jsonify({"result": result, "percentage": placement_chance_percentage})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
