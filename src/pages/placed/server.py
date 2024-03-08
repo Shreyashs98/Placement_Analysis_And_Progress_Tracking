@@ -6,10 +6,9 @@ from sklearn.exceptions import NotFittedError
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-
 app = Flask(__name__)
 CORS(app, origins='http://localhost:5173')
-file_path = "grand_place.csv"
+file_path = "final_dataset.csv"
 data = pd.read_csv(file_path)
 training_data = data.values
 
@@ -23,7 +22,7 @@ scaler = joblib.load(scaler_file_path)  # Replace with the actual path to your s
 def predict_placement_chance(input_features):
     try:
         # Check if the scaler is already fitted
-        if not hasattr(scaler, 'mean_') or not scaler.mean_:
+        if not hasattr(scaler, 'mean_') or not scaler.mean_.any():
             # Fit the scaler if it is not already fitted
             scaler.fit(training_data[:, :-1])  # Adjust to use only the first 8 columns (features)
 
@@ -42,7 +41,7 @@ def predict_placement_chance(input_features):
 def predict_placement():
     data = request.get_json()
     input_features = [data[key] for key in ['aptitude_marks', 'tenth_marks', 'twelfth_marks', 'degree_marks', 'internship', 'projects', 'backlogs', 'leetcode']]
-    print("data received",input_features)
+    print("data received", input_features)
     placement_chance_percentage = predict_placement_chance(input_features)
 
     if isinstance(placement_chance_percentage, str):
@@ -57,5 +56,4 @@ def predict_placement():
     return jsonify({"result": result})
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    app.run(port=5000)
+    app.run(debug=True, port=5000)
