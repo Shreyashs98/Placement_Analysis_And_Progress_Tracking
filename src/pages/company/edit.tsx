@@ -1,6 +1,5 @@
-import { Col, Form, Row, Select } from "antd";
-import { Edit, useSelect } from "@refinedev/antd";
-import { useForm } from "@refinedev/core";
+import { Col, Form, Input, InputNumber, Row, Select } from "antd";
+import { Edit, useSelect, useForm  } from "@refinedev/antd";
 import { UPDATE_COMPANY_MUTATION } from "@/graphql/mutations";
 import CustomAvatar from "@/components/custom-avatar";
 import { getNameInitials } from "@/utilities";
@@ -8,9 +7,18 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
+import { businessTypeOptions, companySizeOptions, industryOptions } from "@/constants";
+import { CompanyContactsTable } from "./contacts-table";
 
 const EditPage = () => {
-  const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
+ 
+
+  const { 
+    saveButtonProps, 
+    formProps, 
+    formLoading, 
+    queryResult 
+  } = useForm({
     redirect: false,
     meta: {
       gqlMutation: UPDATE_COMPANY_MUTATION,
@@ -71,10 +79,32 @@ const EditPage = () => {
                 />
               </Form.Item>
               <Form.Item>
-                <Select />
+                <Select options={companySizeOptions}/>
+              </Form.Item>
+              <Form.Item>
+                <InputNumber 
+                autoFocus
+                addonBefore='₹'
+                min={0}
+                placeholder="0"/>
+              </Form.Item>
+              <Form.Item label="Industry">
+                <Select options={industryOptions}/>
+              </Form.Item>
+              <Form.Item label="Business Type">
+                <Select options={businessTypeOptions}/>
+              </Form.Item>
+              <Form.Item label="Country">
+                <Input placeholder="Country"/>
+              </Form.Item>
+              <Form.Item label="Website">
+              <Input placeholder="Website"/>
               </Form.Item>
             </Form>
           </Edit>
+        </Col>
+        <Col xs={24} sm={12}>
+          <CompanyContactsTable />
         </Col>
       </Row>
     </div>
