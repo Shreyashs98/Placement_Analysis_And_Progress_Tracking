@@ -2,10 +2,12 @@ import CustomAvatar from '@/components/custom-avatar';
 import { Text } from '@/components/text';
 import { COMPANIES_LIST_QUERY } from '@/graphql/queries';
 import { Company } from '@/graphql/schema.types';
+import { CompaniesListQuery } from '@/graphql/types';
 // import { currencyNumber } from '@/utilities';
 import { SearchOutlined } from '@ant-design/icons';
 import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, ShowButton, useTable } from '@refinedev/antd'
-import { getDefaultFilter, useGo } from '@refinedev/core'
+import { HttpError, getDefaultFilter, useGo } from '@refinedev/core'
+import { GetFieldsFromList } from '@refinedev/nestjs-query';
 import {  Button, Input, Space, Table } from 'antd';
 
 export const CompanyList = ({children}:React.PropsWithChildren) => {
@@ -17,7 +19,10 @@ export const CompanyList = ({children}:React.PropsWithChildren) => {
     // Redirect the user to the Google Drive file
     window.location.href = googleDriveURL;
   };
-  const { tableProps, filters } = useTable({
+  const { tableProps, filters } = useTable<
+  GetFieldsFromList<CompaniesListQuery>,
+  HttpError,
+  GetFieldsFromList<CompaniesListQuery>>({
     resource: 'companies',
     onSearch:(values: { name: string }) => {
       return [
