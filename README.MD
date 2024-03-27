@@ -41,8 +41,8 @@ The website includes a progress tracking feature, allowing users to monitor thei
 
 <h3>Placement Prediction</h3>
 Utilizing datasets accumulated by group research, the website offers a placement prediction feature. Based on factors such as marks, backlogs, internships, LeetCode marks, etc., this feature predicts the  chances of a student for getting placed in a company.
-## Learn More
 
+## Learn More
 To learn more about **Refine**, please check out the [Documentation](https://refine.dev/docs)
 
 - **NestJS Query Data Provider** [Docs](https://refine.dev/docs/data/packages/nestjs-query/)
