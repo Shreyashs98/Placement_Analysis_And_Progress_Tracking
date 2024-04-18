@@ -36,7 +36,11 @@ def predict_placement_chance(input_features):
         return placement_chance_percentage
     except NotFittedError as e:
         return str(e)
-
+        
+@app.route("/")
+def start():
+    return "Server is running"
+    
 @app.route('/predict_placement', methods=['POST'])
 def predict_placement():
     data = request.get_json()
