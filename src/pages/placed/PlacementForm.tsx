@@ -22,7 +22,7 @@ const PlacementForm: React.FC = () => {
 
   const submitForm = async () => {
     try {
-      const response = await fetch('http://localhost:5000/predict_placement', {
+      const response = await fetch('https://e6f17a7b-7c23-4357-ba4a-a3e0a5c424ec-00-1wekubp0leiy0.pike.replit.dev/predict_placement', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
